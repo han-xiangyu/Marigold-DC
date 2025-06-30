@@ -254,12 +254,19 @@ def main():
         base = os.path.splitext(img_name)[0]
         img_path = os.path.join(INPUT_IMAGE_FOLDER, base + ".jpg")
         depth_path = os.path.join(INPUT_DEPTH_FOLDER, base + ".npy")
+        output_depth_path = os.path.join(OUTPUT_DEPTH_FOLDER, base + ".npy")
+        output_vis_path = os.path.join(OUTPUT_VIS_FOLDER, base + "_vis.jpg")
 
-        if not os.path.exists(depth_path):
-            logging.warning(f"Missing depth file for {base}, skipping.")
+        # Skip if already processed
+        if os.path.exists(output_depth_path) and os.path.exists(output_vis_path):
+            print(f"✅ Already processed {base}, skipping.")
             continue
 
-        print(f"Processing {base}...")
+        if not os.path.exists(depth_path):
+            logging.warning(f"❌ Missing depth file for {base}, skipping.")
+            continue
+
+        print(f"🚀 Processing {base}...")
 
         rgb = Image.open(img_path).convert("RGB")
         sparse_depth = np.load(depth_path)
@@ -272,11 +279,9 @@ def main():
         )
 
         # Save outputs
-        np.save(os.path.join(OUTPUT_DEPTH_FOLDER, base + ".npy"), pred)
+        np.save(output_depth_path, pred)
         vis = pipe.image_processor.visualize_depth(pred, val_min=pred.min(), val_max=pred.max())[0]
-        vis.save(os.path.join(OUTPUT_VIS_FOLDER, base + "_vis.jpg"))
-
-    print("✅ All images processed.")
+        vis.save(output_vis_path)
     
 if __name__ == "__main__":
     main()
