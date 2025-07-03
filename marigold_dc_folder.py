@@ -195,10 +195,10 @@ def main():
 
 
     # ---- Hardcoded folders ----
-    INPUT_IMAGE_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames900_for_test_with_depth/images"
-    INPUT_DEPTH_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames900_for_test_with_depth/depth_map_gt"
-    OUTPUT_DEPTH_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames900_for_test_with_depth/depth_map_marigold"
-    OUTPUT_VIS_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames900_for_test_with_depth/depth_map_marigold_vis"
+    INPUT_IMAGE_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames6000_for_test_with_depth/images"
+    INPUT_DEPTH_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames6000_for_test_with_depth/depth_map_gt"
+    OUTPUT_DEPTH_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames6000_for_test_with_depth/depth_map_marigold"
+    OUTPUT_VIS_FOLDER = "/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/data/spatial05_frames6000_for_test_with_depth/depth_map_marigold_vis"
     CHECKPOINT = "prs-eth/marigold-depth-v1-0"
 
     # ---- Settings ----
