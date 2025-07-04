@@ -4,14 +4,14 @@ base_logdir="/lustre/fsw/portfolios/nvr/users/ymingli/gaussian/logs/Marigold_spa
 
 
 # Train
-
-submit_job --gpu 1 --cpu 64 --nodes 1 --partition=grizzly,polar,polar3,polar4 --account=nvr_av_end2endav \
-                --image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/cu118.sqsh  \
-                --mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3 \
-                --duration 4 \
-                --dependency=singleton \
-                --name $job_name \
-                --logdir $base_logdir \
-                --notimestamp \
-                --command  "bash /lustre/fsw/portfolios/nvr/users/ymingli/gaussian/code/Marigold-DC/NV_run.sh"
-
+for i in {1..3}; do
+    submit_job --gpu 1 --cpu 64 --nodes 1 --partition=grizzly,polar,polar3,polar4 --account=nvr_av_end2endav \
+                    --image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/cu118.sqsh  \
+                    --mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3 \
+                    --duration 4 \
+                    --dependency=singleton \
+                    --name $job_name \
+                    --logdir ${base_logdir}/run_${i} \
+                    --notimestamp \
+                    --command  "bash /lustre/fsw/portfolios/nvr/users/ymingli/gaussian/code/Marigold-DC/NV_run.sh"
+done 
